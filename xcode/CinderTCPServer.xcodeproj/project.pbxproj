@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 44;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,10 +15,12 @@
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		AB729C0EF9784B29A9E3B55C /* CinderTCPServer_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = B7D14B39E9FF43398CDC8836 /* CinderTCPServer_Prefix.pch */; };
-		A97EA5C9B90C4E708C742BFB /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = D9EB41B5710C4E9E8E9F58FD /* CinderApp.icns */; };
-		E997519958E5404D802FFA73 /* Resources.h in Headers */ = {isa = PBXBuildFile; fileRef = 925BBAC2F9024648804C0D0A /* Resources.h */; };
 		9C5796BFC0044351A2B62AA8 /* CinderTCPServerApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A943FE781FF141C2A048026C /* CinderTCPServerApp.cpp */; };
+		A97EA5C9B90C4E708C742BFB /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = D9EB41B5710C4E9E8E9F58FD /* CinderApp.icns */; };
+		B1F92E2D179B414100B3BD60 /* TCPServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1F92E2B179B414100B3BD60 /* TCPServer.cpp */; };
+		B1F92E30179B439900B3BD60 /* TCPConnection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1F92E2E179B439900B3BD60 /* TCPConnection.cpp */; };
+		B1F92E35179C2E1300B3BD60 /* MPEProtocol.hpp in Sources */ = {isa = PBXBuildFile; fileRef = B1F92E32179B541800B3BD60 /* MPEProtocol.hpp */; };
+		B1F92E39179CAB9F00B3BD60 /* MPEServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1F92E37179CAB9F00B3BD60 /* MPEServer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,14 +32,21 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		52C64F343CB843B2881749DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* CinderTCPServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CinderTCPServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A943FE781FF141C2A048026C /* CinderTCPServerApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; path = ../src/CinderTCPServerApp.cpp; sourceTree = "<group>"; name = CinderTCPServerApp.cpp; };
-		925BBAC2F9024648804C0D0A /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../include/Resources.h; sourceTree = "<group>"; name = Resources.h; };
-		D9EB41B5710C4E9E8E9F58FD /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; name = CinderApp.icns; };
-		52C64F343CB843B2881749DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; name = Info.plist; };
-		B7D14B39E9FF43398CDC8836 /* CinderTCPServer_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = CinderTCPServer_Prefix.pch; sourceTree = "<group>"; name = CinderTCPServer_Prefix.pch; };
+		925BBAC2F9024648804C0D0A /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
+		A943FE781FF141C2A048026C /* CinderTCPServerApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = CinderTCPServerApp.cpp; path = ../src/CinderTCPServerApp.cpp; sourceTree = "<group>"; };
+		B1F92E2B179B414100B3BD60 /* TCPServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TCPServer.cpp; path = ../CinderTCP/TCPServer.cpp; sourceTree = "<group>"; };
+		B1F92E2C179B414100B3BD60 /* TCPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPServer.h; path = ../CinderTCP/TCPServer.h; sourceTree = "<group>"; };
+		B1F92E2E179B439900B3BD60 /* TCPConnection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TCPConnection.cpp; path = ../CinderTCP/TCPConnection.cpp; sourceTree = "<group>"; };
+		B1F92E2F179B439900B3BD60 /* TCPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCPConnection.h; path = ../CinderTCP/TCPConnection.h; sourceTree = "<group>"; };
+		B1F92E32179B541800B3BD60 /* MPEProtocol.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = MPEProtocol.hpp; path = "../Cinder-MPE/MPEProtocol.hpp"; sourceTree = "<group>"; };
+		B1F92E37179CAB9F00B3BD60 /* MPEServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MPEServer.cpp; path = "../Cinder-MPE/MPEServer.cpp"; sourceTree = "<group>"; };
+		B1F92E38179CAB9F00B3BD60 /* MPEServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPEServer.h; path = "../Cinder-MPE/MPEServer.h"; sourceTree = "<group>"; };
+		B7D14B39E9FF43398CDC8836 /* CinderTCPServer_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = CinderTCPServer_Prefix.pch; sourceTree = "<group>"; };
+		D9EB41B5710C4E9E8E9F58FD /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +68,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01B97315FEAEA392516A2CEA /* Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				B1F92E34179C2D9100B3BD60 /* CinderMPE */,
+				B1F92E2A179B411D00B3BD60 /* CinderTCP */,
+			);
+			name = Blocks;
+			sourceTree = "<group>";
+		};
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,13 +130,6 @@
 			name = CinderTCPServer;
 			sourceTree = "<group>";
 		};
-		01B97315FEAEA392516A2CEA /* Blocks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Blocks;
-			sourceTree = "<group>";
-		};
 		29B97315FDCFA39411CA2CEA /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +155,27 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B1F92E2A179B411D00B3BD60 /* CinderTCP */ = {
+			isa = PBXGroup;
+			children = (
+				B1F92E2B179B414100B3BD60 /* TCPServer.cpp */,
+				B1F92E2C179B414100B3BD60 /* TCPServer.h */,
+				B1F92E2E179B439900B3BD60 /* TCPConnection.cpp */,
+				B1F92E2F179B439900B3BD60 /* TCPConnection.h */,
+			);
+			name = CinderTCP;
+			sourceTree = "<group>";
+		};
+		B1F92E34179C2D9100B3BD60 /* CinderMPE */ = {
+			isa = PBXGroup;
+			children = (
+				B1F92E32179B541800B3BD60 /* MPEProtocol.hpp */,
+				B1F92E37179CAB9F00B3BD60 /* MPEServer.cpp */,
+				B1F92E38179CAB9F00B3BD60 /* MPEServer.h */,
+			);
+			name = CinderMPE;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,6 +240,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C5796BFC0044351A2B62AA8 /* CinderTCPServerApp.cpp in Sources */,
+				B1F92E2D179B414100B3BD60 /* TCPServer.cpp in Sources */,
+				B1F92E30179B439900B3BD60 /* TCPConnection.cpp in Sources */,
+				B1F92E35179C2E1300B3BD60 /* MPEProtocol.hpp in Sources */,
+				B1F92E39179CAB9F00B3BD60 /* MPEServer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,24 +254,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CinderTCPServer_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = CinderTCPServer_Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/libcinder_d.a\"";
 				PRODUCT_NAME = CinderTCPServer;
-				WRAPPER_EXTENSION = app;
 				SYMROOT = ./build;
+				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
@@ -257,19 +293,19 @@
 				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/libcinder.a\"";
 				PRODUCT_NAME = CinderTCPServer;
 				STRIP_INSTALLED_PRODUCT = YES;
-				WRAPPER_EXTENSION = app;
 				SYMROOT = ./build;
+				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = i386;
-				CINDER_PATH = "../../../../cinder_working";
+				CINDER_PATH = ../../../../cinder_working;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/boost\"";
@@ -282,11 +318,11 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = i386;
-				CINDER_PATH = "../../../../cinder_working";
+				CINDER_PATH = ../../../../cinder_working;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/boost\"";

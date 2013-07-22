@@ -1,5 +1,6 @@
 #include "cinder/app/AppNative.h"
 #include "cinder/gl/gl.h"
+#include "MPEServer.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -11,6 +12,8 @@ class CinderTCPServerApp : public AppNative {
 	void mouseDown( MouseEvent event );	
 	void update();
 	void draw();
+    
+    mpe::MPEServerRef mpe;
 };
 
 void CinderTCPServerApp::setup()
