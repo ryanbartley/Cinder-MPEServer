@@ -18,46 +18,47 @@
 
 #include "TCPConnection.h"
 
-namespace cinder {
-    namespace  TCP {
+namespace  TCP {
 
 class Server;
-typedef boost::shared_ptr< Server > ServerRef;
+typedef std::shared_ptr< Server > ServerRef;
      
 class Server :
-        public boost::enable_shared_from_this< Server >,
-        private boost::noncopyable {
-            
-  public:
+public std::enable_shared_from_this< Server >,
+private boost::noncopyable {
+
+public:
     explicit Server( const std::string& address, const std::string& port, std::size_t threadPoolSize );
-    
+
     static ServerRef create( const std::string& address, const std::string& port, std::size_t threadPoolSize )
     { return ServerRef( new Server( address, port, threadPoolSize ) ); }
-    
+
     void run();
-    void disconnect( int clientId );/
+    void disconnect( int clientId );
     void stop();
-    
+
     boost::asio::io_service& getIoService() { return mIoService; }
-            
-  protected:
+    std::map<int, ConnectRef>& getConnectedClients() { return ConnectedClients; }
+
+protected:
     std::map<int, ConnectRef>       ConnectedClients;
-            
-  private:
+
+private:
     void startAccept();
     void handleAccept( const boost::system::error_code& e );
     void handleStop();
-    
+    void startTimer();
+    void handleTimer();
+
     std::size_t                     threadPoolSize;
     boost::asio::io_service         mIoService;
     boost::asio::signal_set         terminationSignals;
     boost::asio::ip::tcp::acceptor  acceptor;
     ConnectRef                      newConnection;
-    
-            
+
+
 };
 
 
         
 }// <-TCP
-}// <-Cinder
