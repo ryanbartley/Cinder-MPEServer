@@ -16,10 +16,15 @@
 namespace TCP {
         
 Server::Server( const std::string& address, const std::string& port, std::size_t threadPoolSize )
-: threadPoolSize(threadPoolSize),
+: ConnectedClients(),
+    newConnection(),
+    threadPoolSize(threadPoolSize),
+    mWorkPtr( new boost::asio::io_service::work( mIoService ) ), 
     terminationSignals( mIoService ),
     acceptor( mIoService ),
-    newConnection()
+    mTimer( mIoService ),
+    mLastTime(),
+    mTimerInterval()
 {
     terminationSignals.add(SIGINT);
     terminationSignals.add(SIGTERM);
@@ -62,8 +67,9 @@ void Server::startAccept()
 void Server::handleAccept(const boost::system::error_code& e)
 {
     if (!e) {
-        newConnection->start();
+        newConnection->recv();
         ConnectedClients.insert(std::pair<int, ConnectRef>(ConnectedClients.size()+1, newConnection) );
+        onAcceptEvent( newConnection, ConnectedClients.size() );
     }
     
     startAccept();
@@ -72,6 +78,23 @@ void Server::handleAccept(const boost::system::error_code& e)
 void Server::handleStop()
 {
     mIoService.stop();
+}
+    
+void Server::disconnect( int clientId )
+{
+    auto disconClient = ConnectedClients.find( clientId );
+    disconClient->second->disconnect();
+    ConnectedClients.erase( disconClient );
+}
+    
+void Server::stop()
+{
+    mIoService.stop();
+}
+    
+bool Server::hasStopped()
+{
+    return ( boost::interprocess::ipcdetail::atomic_cas32( &mShutdown, 1, 1 ) == 1 );
 }
 
 }

@@ -13,7 +13,7 @@ class CinderTCPServerApp : public AppNative {
 	void update();
 	void draw();
     
-    mpe::MPEServerRef mpe;
+    MPE::MPEServerRef mpe;
 };
 
 void CinderTCPServerApp::setup()

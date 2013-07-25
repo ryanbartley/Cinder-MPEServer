@@ -15,6 +15,7 @@
 #include <boost/noncopyable.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/enable_shared_from_this.hpp>
+#include <boost/interprocess/detail/atomic.hpp>
 
 
 namespace TCP {
@@ -33,6 +34,7 @@ class Connection
     explicit Connection( ServerRef mServer );
     static ConnectRef create( ServerRef mServer )
     { return ConnectRef( new Connection( mServer ) ); }
+    ~Connection();
     
     // Posts data to be sent to the connection.
     void send( const std::vector< std::string > & buffer );
@@ -57,17 +59,10 @@ class Connection
 	// 64kb. For packet based protocols, then it will be much smaller,
 	// usually 512b - 8kb depending on the protocol. The default value is
 	// 4kb.
-	void setReceiveBufferSize( int32_t size );
+	void setReceiveBufferSize( int32_t size ) { mReceiveBufferSize = size; }
     
 	// Returns the size of the receive buffer size of the current object.
-	int32_t getReceiveBufferSize() const;
-    
-	// Sets the timer interval of the object. The interval is changed after
-	// the next update is called.
-	void setTimerInterval( int32_t timerIntervalMilli );
-    
-	// Returns the timer interval of the object.
-	int32_t getTimerInterval() const;
+	int32_t getReceiveBufferSize() const { return mReceiveBufferSize; }
     
 	// Returns true if this object has an error associated with it.
 	bool hasError();
@@ -75,10 +70,6 @@ class Connection
   private:
     Connection( const Connection & rhs );
 	Connection & operator =( const Connection & rhs );
-    
-    // Called when the connection has successfully connected to the local
-	// host.
-	void onAccept( const std::string & host, uint16_t port );
     
     void handleConnect( const boost::system::error_code & ec );
 	// Called when the connection has successfully connected to the remote
@@ -104,26 +95,21 @@ class Connection
     // Called when data has been received by the connection.
 	void onRecv( std::vector< std::string > & buffer );
     
-    void dispatchTimer( const boost::system::error_code & ec );
-	void startTimer();
-    void handleTimer( const boost::system::error_code & ec );
-    // Called on each timer event.
-	void onTimer( const boost::posix_time::time_duration & delta );
-    
 	void startError( const boost::system::error_code & ec );
 	// Called when an error is encountered.
 	void onError( const boost::system::error_code & ec );
     
   private:
+    ServerRef                               mServer;
     boost::asio::io_service::strand         mStrand;
     boost::asio::ip::tcp::socket            mSocket;
-    boost::asio::deadline_timer             mTimer;
-    boost::posix_time::ptime                mLastTime;
     std::vector< std::string >              mRecvBuffer;
     std::list< int32_t >                    mPendingRecvs;
     std::list< std::vector< std::string > > mPendingSends;
     int32_t                                 mReceiveBufferSize;
-    int32_t                                 mTimerInterval;
+    
+    volatile uint32_t                       mErrorState;
+    
     
 };
 

@@ -8,24 +8,32 @@
 
 #include "MPEServer.h"
 
-namespace mpe {
+namespace MPE {
     
 MPEServer::MPEServer(const std::string& address, const std::string& port,
                      std::size_t threadPoolSize, int numClients )
-: TCP::Server( address, port, threadPoolSize),
-    expectedConnects(numClients)
+: mServer( TCP::Server::create(address, port, threadPoolSize) ),
+    expectedConnects(numClients),
+    allClientsReady(false)
 {
+    mServer->
 }
 
 void MPEServer::broadcast()
 {
     // Create the 
     if ( allClientsReady ) {
-        for( auto conns = ConnectedClients.begin(); conns != ConnectedClients.end(); ++conns)
-            conns->second->write();
+        for( auto conns = mServer->getConnectedClients().begin(); conns != mServer->getConnectedClients().end(); ++conns)
+            conns->second->send("something");
     }
     
     //then broadcast again
+}
+    
+void MPEServer::sendUnique(int clientId)
+{
+    auto uniqueConn = mServer->getConnectedClients().find(clientId);
+    uniqueConn->second->send( );
 }
 
 

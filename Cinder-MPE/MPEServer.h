@@ -11,7 +11,7 @@
 #include "TCPServer.h"
 #include "MPEProtocol.hpp"
 
-namespace mpe {
+namespace MPE {
         
 class MPEServer;
 typedef std::shared_ptr< MPEServer > MPEServerRef;
@@ -34,6 +34,8 @@ class MPEServer {
     TCP::ServerRef  mServer;
     int             expectedConnects;
     bool            allClientsReady;
+    bool            allClientsConnected;
+    
 };
-        
+    
 }
