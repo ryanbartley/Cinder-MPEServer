@@ -48,9 +48,6 @@ public:
     
     // Returns the timer interval of the object.
     int32_t getTimerInterval() const { return mTimerInterval; }
-        
-    // Called on each timer event.
-    void onTimer( const boost::posix_time::time_duration & delta );
 
 private:
     void startAccept();
@@ -67,7 +64,7 @@ private:
     ConnectRef                      newConnection;
     std::size_t                     threadPoolSize;
     boost::asio::io_service         mIoService;
-    boost::shared_ptr< boost::asio::io_service::work >  mWorkPtr;
+    std::shared_ptr< boost::asio::io_service::work >  mWorkPtr;
     boost::asio::signal_set         terminationSignals;
     boost::asio::ip::tcp::acceptor  acceptor;
     
@@ -79,11 +76,24 @@ private:
     // Called when the client has successfully connected to the local
     // host.
     std::function< void( ConnectRef, int ) > onAcceptEvent;
+        
+    // Called on each timer event.
+    std::function< void( const boost::posix_time::time_duration ) > onTimerEvent;
 
 // Adding Listeners
 public:
         
-    template<
+    template< typename T, typename Y >
+    inline void connectAcceptHandler( T eventHandler, Y* eventHandlerObject )
+    {
+        onAcceptEvent = std::bind( eventHandler, eventHandlerObject );
+    }
+        
+    template< typename T, typename Y >
+    inline void connectTimerEvent( T eventHandler, Y* eventhandlerObject )
+    {
+        onTimerEvent = std::bind( eventHandler, eventhandlerObject );
+    }
 
 };
 

@@ -26,6 +26,7 @@ Server::Server( const std::string& address, const std::string& port, std::size_t
     mLastTime(),
     mTimerInterval()
 {
+    
     terminationSignals.add(SIGINT);
     terminationSignals.add(SIGTERM);
     #if defined(SIGQUIT)

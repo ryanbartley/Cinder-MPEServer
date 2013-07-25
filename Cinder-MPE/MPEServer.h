@@ -16,7 +16,7 @@ namespace MPE {
 class MPEServer;
 typedef std::shared_ptr< MPEServer > MPEServerRef;
 
-class MPEServer {
+class MPEServer : std::enable_shared_from_this< MPEServer >{
   public:
     
     explicit MPEServer( const std::string& address, const std::string& port,
@@ -28,6 +28,8 @@ class MPEServer {
     
     void broadcast();
     void sendUnique( int clientId );
+    
+    void onAccept( const TCP::ConnectRef clientRef, int clientId );
     
 
   private:

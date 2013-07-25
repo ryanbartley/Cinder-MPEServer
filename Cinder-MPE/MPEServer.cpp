@@ -16,7 +16,8 @@ MPEServer::MPEServer(const std::string& address, const std::string& port,
     expectedConnects(numClients),
     allClientsReady(false)
 {
-    mServer->
+    mServer->connectAcceptHandler( &MPEServer::onAccept, shared_from_this() );
+    
 }
 
 void MPEServer::broadcast()
@@ -36,6 +37,10 @@ void MPEServer::sendUnique(int clientId)
     uniqueConn->second->send( );
 }
 
+void MPEServer::onAccept(const TCP::ConnectRef clientRef, int clientId)
+{
+    
+}
 
 }
 

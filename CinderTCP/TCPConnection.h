@@ -110,6 +110,9 @@ class Connection
     
     volatile uint32_t                       mErrorState;
     
+  public:
+    
+    
     
 };
 
