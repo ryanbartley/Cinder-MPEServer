@@ -30,7 +30,7 @@ class MPEServer : std::enable_shared_from_this< MPEServer >{
     void sendUnique( int clientId );
     
     void onAccept( const TCP::ConnectRef clientRef, int clientId );
-    
+    void onTimer( const boost::posix_time::time_duration& delta );
 
   private:
     TCP::ServerRef  mServer;

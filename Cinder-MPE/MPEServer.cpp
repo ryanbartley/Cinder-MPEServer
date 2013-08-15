@@ -16,7 +16,8 @@ MPEServer::MPEServer(const std::string& address, const std::string& port,
     expectedConnects(numClients),
     allClientsReady(false)
 {
-    mServer->connectAcceptHandler( &MPEServer::onAccept, shared_from_this() );
+    mServer->connectAcceptHandler( &MPEServer::onAccept, this );
+    mServer->connectTimerEvent( &MPEServer::onTimer, this );
     
 }
 
@@ -25,7 +26,7 @@ void MPEServer::broadcast()
     // Create the 
     if ( allClientsReady ) {
         for( auto conns = mServer->getConnectedClients().begin(); conns != mServer->getConnectedClients().end(); ++conns)
-            conns->second->send("something");
+            conns->second->send( );
     }
     
     //then broadcast again

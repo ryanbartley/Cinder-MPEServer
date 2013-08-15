@@ -17,6 +17,8 @@
 #include <boost/enable_shared_from_this.hpp>
 #include <boost/interprocess/detail/atomic.hpp>
 
+#include "Message.h"
+
 
 namespace TCP {
         
@@ -86,7 +88,7 @@ class Connection
 	void startSend();
     void handleSend( const boost::system::error_code & ec,  std::list< std::vector< std::string > >::iterator sendIt );
     // Called when data has been sent by the connection.
-	void onSend( const std::vector< std::string > & buffer );
+	void onSend( const MessageRef & buffer );
     
     
     void dispatchRecv( int32_t totalBytes );

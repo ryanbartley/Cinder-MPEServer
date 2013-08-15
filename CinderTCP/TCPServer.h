@@ -78,7 +78,7 @@ private:
     std::function< void( ConnectRef, int ) > onAcceptEvent;
         
     // Called on each timer event.
-    std::function< void( const boost::posix_time::time_duration ) > onTimerEvent;
+    std::function< void( const boost::posix_time::time_duration& ) > onTimerEvent;
 
 // Adding Listeners
 public:

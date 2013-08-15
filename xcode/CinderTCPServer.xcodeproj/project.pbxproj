@@ -22,6 +22,7 @@
 		B1F92E35179C2E1300B3BD60 /* MPEProtocol.hpp in Sources */ = {isa = PBXBuildFile; fileRef = B1F92E32179B541800B3BD60 /* MPEProtocol.hpp */; };
 		B1F92E39179CAB9F00B3BD60 /* MPEServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B1F92E37179CAB9F00B3BD60 /* MPEServer.cpp */; };
 		B3F8CF5617A1BB5300150401 /* Message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3F8CF5417A1BB5300150401 /* Message.cpp */; };
+		B3F8CF5917A1C52400150401 /* MPEMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3F8CF5717A1C52400150401 /* MPEMessage.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,8 @@
 		B1F92E38179CAB9F00B3BD60 /* MPEServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPEServer.h; path = "../Cinder-MPE/MPEServer.h"; sourceTree = "<group>"; };
 		B3F8CF5417A1BB5300150401 /* Message.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Message.cpp; path = ../CinderTCP/Message.cpp; sourceTree = "<group>"; };
 		B3F8CF5517A1BB5300150401 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Message.h; path = ../CinderTCP/Message.h; sourceTree = "<group>"; };
+		B3F8CF5717A1C52400150401 /* MPEMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MPEMessage.cpp; path = "../Cinder-MPE/MPEMessage.cpp"; sourceTree = "<group>"; };
+		B3F8CF5817A1C52400150401 /* MPEMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPEMessage.h; path = "../Cinder-MPE/MPEMessage.h"; sourceTree = "<group>"; };
 		B7D14B39E9FF43398CDC8836 /* CinderTCPServer_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = CinderTCPServer_Prefix.pch; sourceTree = "<group>"; };
 		D9EB41B5710C4E9E8E9F58FD /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -179,6 +182,8 @@
 				B1F92E32179B541800B3BD60 /* MPEProtocol.hpp */,
 				B1F92E37179CAB9F00B3BD60 /* MPEServer.cpp */,
 				B1F92E38179CAB9F00B3BD60 /* MPEServer.h */,
+				B3F8CF5717A1C52400150401 /* MPEMessage.cpp */,
+				B3F8CF5817A1C52400150401 /* MPEMessage.h */,
 			);
 			name = CinderMPE;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 				B1F92E35179C2E1300B3BD60 /* MPEProtocol.hpp in Sources */,
 				B1F92E39179CAB9F00B3BD60 /* MPEServer.cpp in Sources */,
 				B3F8CF5617A1BB5300150401 /* Message.cpp in Sources */,
+				B3F8CF5917A1C52400150401 /* MPEMessage.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
